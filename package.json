@@ -1,0 +1,30 @@
+{
+  "name": "dox-swagger-cli",
+  "version": "0.0.1",
+  "description": "dox swagger cli",
+  "main": "index.js",
+  "bin": {
+        "swaggerdox": "./bin/swaggerdox"
+    },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:youxiachai/dox-swagger-cli.git"
+  },
+  "keywords": [
+    "dox",
+    "swagger"
+  ],
+  "author": "youxiachai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/youxiachai/dox-swagger-cli/issues"
+  },
+  "homepage": "https://github.com/youxiachai/dox-swagger-cli",
+  "dependencies": {
+    "dox-swagger": "0.0.1",
+    "commander": "~2.2.0"
+  }
+}
