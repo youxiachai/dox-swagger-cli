@@ -1,6 +1,6 @@
 {
   "name": "dox-swagger-cli",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "dox swagger cli",
   "main": "index.js",
   "bin": {
