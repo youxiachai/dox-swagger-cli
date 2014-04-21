@@ -19,7 +19,7 @@ program
 
 
 if(!/(http|https)/.test(program.basePath)) {
-    program.host = 'http://' + program.basePath;
+    program.basePath = 'http://' + program.basePath;
 }
 
 //current path
