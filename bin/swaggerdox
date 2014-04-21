@@ -4,15 +4,17 @@ var program = require('commander'),
     packageInfo = require('../package'),
     doxSwagger = require('dox-swagger'),
     path = require('path'),
+    mkdirp = require('mkdirp');
     fs = require('fs'),
     path = require('path');
 
 
 program
     .version(packageInfo.version)
-    .option('-b, --basePath [http://localhost]', 'api url path', 'http://localhost')
-    .option('-d, --description []', 'api description', '')
-    .option('-i, --input [lib]', 'code dir', 'lib')
+    .option('-b, --basePath [http://localhost]', 'api url path default use localhost', 'http://localhost')
+    .option('-d, --description', 'api description')
+    .option('-o, --output', 'spec doc output dir')
+    .option('-i, --input [lib]', 'code dir default use lib', 'lib')
     .parse(process.argv);
 
 
@@ -22,11 +24,19 @@ if(!/(http|https)/.test(program.basePath)) {
     program.basePath = 'http://' + program.basePath;
 }
 
+
 //current path
 
 var basePath = path.resolve('.');
 
 var codeDir = path.join(basePath, program.input);
+
+mkdirp.sync(codeDir);
+
+if(program.output) {
+    mkdirp.sync(path.join(basePath, program.output));
+}
+
 
 var files = fs.readdirSync(codeDir);
 

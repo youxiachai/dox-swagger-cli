@@ -1,11 +1,11 @@
 {
   "name": "dox-swagger-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "dox swagger cli",
   "main": "index.js",
   "bin": {
-        "swaggerdox": "./bin/swaggerdox"
-    },
+    "swaggerdox": "./bin/swaggerdox"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/youxiachai/dox-swagger-cli",
   "dependencies": {
     "dox-swagger": "0.0.1",
-    "commander": "~2.2.0"
+    "commander": "~2.2.0",
+    "mkdirp": "~0.3.5"
   }
 }
