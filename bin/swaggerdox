@@ -45,6 +45,6 @@ files.forEach(function (item) {
     doxSwagger.doxSwagger(path.join(codeDir ,item), program);
 })
 
-fs.writeFileSync(path.join(basePath, 'index.html'), JSON.stringify(doxSwagger.apiResourceList));
+fs.writeFileSync(path.join(program.output, 'index.html'), JSON.stringify(doxSwagger.apiResourceList));
 
 
