@@ -13,7 +13,7 @@ program
     .version(packageInfo.version)
     .option('-b, --basePath [http://localhost]', 'api url path default use localhost', 'http://localhost')
     .option('-d, --description', 'api description')
-    .option('-o, --output', 'spec doc output dir')
+    .option('-o, --output [api-docs]', 'spec doc output dir', 'api-docs')
     .option('-i, --input [lib]', 'code dir default use lib', 'lib')
     .parse(process.argv);
 
@@ -45,6 +45,6 @@ files.forEach(function (item) {
     doxSwagger.doxSwagger(path.join(codeDir ,item), program);
 })
 
-fs.writeFileSync(path.join(basePath, 'api-docs'), JSON.stringify(doxSwagger.apiResourceList));
+fs.writeFileSync(path.join(basePath, 'index.html'), JSON.stringify(doxSwagger.apiResourceList));
 
 
