@@ -13,7 +13,7 @@ program
     .version(packageInfo.version)
     .option('-b, --basePath [http://localhost]', 'api url path default use localhost', 'http://localhost')
     .option('-d, --description', 'api description')
-    .option('-o, --output [api-docs]', 'spec doc output dir', 'api-docs')
+    .option('-o, --output [docs]', 'spec doc output dir', 'docs')
     .option('-i, --input [lib]', 'code dir default use lib', 'lib')
     .parse(process.argv);
 
