@@ -42,7 +42,15 @@ var files = fs.readdirSync(codeDir);
 
 
 files.forEach(function (item) {
-    doxSwagger.doxSwagger(path.join(codeDir ,item), program);
+
+    var point = item.lastIndexOf(".");
+
+    var type = item.substr(point);
+
+    if(type === '.js'){
+        doxSwagger.doxSwagger(path.join(codeDir ,item), program);
+    }
+
 })
 
 fs.writeFileSync(path.join(program.output, 'api-docs'), JSON.stringify(doxSwagger.apiResourceList));
