@@ -1,9 +1,9 @@
 ## 安装
 
 ```bash
-win npm install -g swaggerdox
+win npm install -g dox-swagger-cli
 
-*nix sudo npm install -g swaggerdox
+*nix sudo npm install -g dox-swagger-cli
 ```
 
 
