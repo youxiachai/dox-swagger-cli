@@ -46,30 +46,51 @@ exports.getUserById = function (id, done) {
 ## 文档生成
 
 ```bash
+ Usage: swaggerdox [options] [command]
 
-Usage: swaggerdox [options]
+ Commands:
 
-Options:
+   server [options]       run a simple static server
 
-  -h, --help                         output usage information
-  -V, --version                      output the version number
-  -b, --basePath [http://localhost]  api url path default use localhost
-  -d, --description                  api description
-  -o, --output [docs]                spec doc output dir
-  -i, --input [lib]                  code dir default use lib
+ Options:
+
+   -h, --help                              output usage information
+   -V, --version                           output the version number
+   -b, --basePath [http://localhost:1984]  api url path default use localhost
+   -d, --description                       api description
+   -c, --client [swaggerui]                default swagger ui
+   -m, --models [models]                   spec doc models dir
+   -o, --output [swaggerdocs]              spec doc output dir
+   -i, --input [lib]                       code dir default use lib
+
 ```
+
 
 
 一般而言,你需要指定你的代码目录,还有api 访问的地址
 
 ```bash
-swaggerdox -i controllers -b  localhost:5000
+doxswagger -i controllers -b  localhost:5000
 ```
 
 没有任何东西输出的时候,就说明成功了,你当前目录就会有一个docs 的目录了,你可以把它拷到任何一个静态服务器里面.
 
 接着你用
 
-http://swagger.wordnik.com/
+```bash
+doxswagger server
+```
+
+用浏览器打开 `http://localhost:1984/swaggerdocs`  就可以看到生成的文档了
+
+```bash
+ Usage: server [options]
+
+ Options:
+
+   -h, --help                output usage information
+   -s, --server [swaggerui]  spec doc dir
+   -p, --port [port]         spec api doc server port
+```
 
 填上你的api-docs 的路径就可以用了..

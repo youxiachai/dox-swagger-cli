@@ -15,13 +15,13 @@ program
     .option('-i, --input [lib]', 'code dir default use lib', 'lib');
 
 program
-    .command('server []')
+    .command('server')
     .description('run a simple static server')
     .option('-s, --server [swaggerui]', 'spec doc dir', 'swaggerui')
     .option('-p, --port [port]', 'spec api doc server port', 1984)
-    .action(function (cmd, options) {
-        isServer = true;
-        lib.staticServer(options);
+    .action(function (cmd) {
+       isServer = true;
+       lib.staticServer(cmd);
     })
 
 program.parse(process.argv);
