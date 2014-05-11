@@ -1,77 +1,33 @@
 #!/usr/bin/env node
 
-var program = require('commander'),
-    packageInfo = require('../package'),
-    doxSwagger = require('dox-swagger'),
-    path = require('path'),
-    mkdirp = require('mkdirp');
-fs = require('fs'),
-    path = require('path');
-
+var lib = require('../lib/index')
+    ,isServer = false
+    ,program = require('commander')
+    ,packageInfo = require('../package');
 
 program
     .version(packageInfo.version)
-    .option('-b, --basePath [http://localhost]', 'api url path default use localhost', 'http://localhost')
+    .option('-b, --basePath [http://localhost:1984]', 'api url path default use localhost', 'http://localhost:1984')
     .option('-d, --description', 'api description')
-    .option('-m, --models [models]', 'spec doc models dir')
-    .option('-o, --output [docs]', 'spec doc output dir', 'docs')
-    .option('-i, --input [lib]', 'code dir default use lib', 'lib')
-    .parse(process.argv);
+    .option('-m, --models', 'spec doc models dir')
+    .option('-o, --output [swaggerdocs]', 'spec doc output dir', 'swaggerdocs')
+    .option('-i, --input [lib]', 'code dir default use lib', 'lib');
 
-
-if (!/(http|https)/.test(program.basePath)) {
-    program.basePath = 'http://' + program.basePath;
-}
-
-
-//current path
-
-var basePath = path.resolve('.');
-
-var codeDir = path.join(basePath, program.input);
-
-mkdirp.sync(codeDir);
-
-if (program.output) {
-    mkdirp.sync(path.join(basePath, program.output));
-}
-
-//加载模型定义
-if (program.models) {
-    var modelDir = path.join(basePath, program.models);
-
-    var modelFiles = fs.readdirSync(modelDir);
-
-
-    var modelObj = {};
-    modelFiles.forEach(function (item) {
-
-        var point = item.lastIndexOf(".");
-        var name = item.substr(0, point);
-
-        modelObj[name] = require(path.join(modelDir, item))
+program
+    .command('server []')
+    .description('run a simple static server')
+    .option('-s, --server [swaggerdocs]', 'spec doc dir', 'swaggerdocs')
+    .option('-p, --port [port]', 'spec api doc server port', 1984)
+    .action(function (cmd, options) {
+        isServer = true;
+        lib.staticServer(options);
     })
 
-    program.models = modelObj;
+program.parse(process.argv);
 
+
+if (!isServer) {
+    lib.buildApiFile(program);
 }
-
-
-var files = fs.readdirSync(codeDir);
-
-
-files.forEach(function (item) {
-
-    var point = item.lastIndexOf(".");
-
-    var type = item.substr(point);
-
-    if (type === '.js') {
-        doxSwagger.doxSwagger(path.join(codeDir, item), program);
-    }
-
-})
-
-fs.writeFileSync(path.join(program.output, 'api-docs'), JSON.stringify(doxSwagger.apiResourceList));
 
 
