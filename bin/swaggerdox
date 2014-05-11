@@ -9,14 +9,15 @@ program
     .version(packageInfo.version)
     .option('-b, --basePath [http://localhost:1984]', 'api url path default use localhost', 'http://localhost:1984')
     .option('-d, --description', 'api description')
-    .option('-m, --models', 'spec doc models dir')
+    .option('-c, --client [swaggerui]', 'default swagger ui', 'swaggerui')
+    .option('-m, --models [models]', 'spec doc models dir')
     .option('-o, --output [swaggerdocs]', 'spec doc output dir', 'swaggerdocs')
     .option('-i, --input [lib]', 'code dir default use lib', 'lib');
 
 program
     .command('server []')
     .description('run a simple static server')
-    .option('-s, --server [swaggerdocs]', 'spec doc dir', 'swaggerdocs')
+    .option('-s, --server [swaggerui]', 'spec doc dir', 'swaggerui')
     .option('-p, --port [port]', 'spec api doc server port', 1984)
     .action(function (cmd, options) {
         isServer = true;
