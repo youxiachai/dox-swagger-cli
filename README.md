@@ -46,7 +46,7 @@ exports.getUserById = function (id, done) {
 ## 文档生成
 
 ```bash
- Usage: swaggerdox [options] [command]
+ Usage: doxswagger [options] [command]
 
  Commands:
 
@@ -84,13 +84,13 @@ doxswagger server
 用浏览器打开 `http://localhost:1984/swaggerdocs`  就可以看到生成的文档了
 
 ```bash
- Usage: server [options]
+  Usage: server [options]
 
- Options:
+  Options:
 
-   -h, --help                output usage information
-   -s, --server [swaggerui]  spec doc dir
-   -p, --port [port]         spec api doc server port
+    -h, --help                output usage information
+    -s, --server [swaggerui]  spec doc dir
+    -p, --port [port]         spec api doc server port
 ```
 
 填上你的api-docs 的路径就可以用了..
